@@ -1,0 +1,128 @@
+═══════════════════════════════════════════════════════════════════════
+🚀 COMMANDES À COPIER-COLLER - DÉPLOIEMENT GITHUB
+═══════════════════════════════════════════════════════════════════════
+
+⚠️  AVANT DE COMMENCER:
+1. Créer un compte GitHub: https://github.com/signup
+2. Créer un repository nommé "elinor-merchant"
+3. Noter votre nom d'utilisateur GitHub
+
+
+═══════════════════════════════════════════════════════════════════════
+ÉTAPE 1: OUVRIR POWERSHELL
+═══════════════════════════════════════════════════════════════════════
+
+Appuyez sur Windows + X
+Sélectionnez "Windows PowerShell"
+
+
+═══════════════════════════════════════════════════════════════════════
+ÉTAPE 2: COPIER-COLLER CES COMMANDES UNE PAR UNE
+═══════════════════════════════════════════════════════════════════════
+
+👉 Remplacez VOTRE_USERNAME par votre nom d'utilisateur GitHub!
+
+
+Commande 1: Aller au dossier du projet
+─────────────────────────────────────────────────────────────────────
+cd C:\Users\AD\Documents\Elinor
+
+
+Commande 2: Ajouter le remote GitHub
+─────────────────────────────────────────────────────────────────────
+git remote add origin https://github.com/VOTRE_USERNAME/elinor-merchant.git
+
+(⚠️  Remplacez VOTRE_USERNAME par votre nom GitHub)
+
+
+Commande 3: Pousser le code sur GitHub
+─────────────────────────────────────────────────────────────────────
+git push -u origin main
+
+
+🔐 GitHub vous demandera de vous connecter:
+   - Entrez votre username GitHub
+   - Entrez votre mot de passe
+
+
+✅ Une fois terminé, vérifiez sur:
+   https://github.com/VOTRE_USERNAME/elinor-merchant
+
+   Vous devriez voir tous vos fichiers!
+
+
+═══════════════════════════════════════════════════════════════════════
+ÉTAPE 3: DÉPLOYER SUR RENDER.COM
+═══════════════════════════════════════════════════════════════════════
+
+1. Allez sur: https://render.com
+
+2. Cliquez "Get Started for Free"
+
+3. Connectez-vous avec GitHub
+
+4. Cliquez "New +" → "Web Service"
+
+5. Sélectionnez "elinor-merchant"
+
+6. Remplissez:
+   - Name: elinor-merchant
+   - Build Command: npm install
+   - Start Command: npm start
+   - Plan: Free
+
+7. Cliquez "Create Web Service"
+
+8. Attendez 2-3 minutes
+
+9. Votre site sera à: https://elinor-merchant.onrender.com
+
+
+═══════════════════════════════════════════════════════════════════════
+EXEMPLE COMPLET (COPIER-COLLER)
+═══════════════════════════════════════════════════════════════════════
+
+Si votre username GitHub est "JohnDoe", voici les commandes exactes:
+
+cd C:\Users\AD\Documents\Elinor
+git remote add origin https://github.com/JohnDoe/elinor-merchant.git
+git push -u origin main
+
+
+👉 Remplacez "JohnDoe" par VOTRE nom d'utilisateur GitHub!
+
+
+═══════════════════════════════════════════════════════════════════════
+EN CAS D'ERREUR
+═══════════════════════════════════════════════════════════════════════
+
+Si "git remote add" échoue avec "remote origin already exists":
+
+git remote remove origin
+git remote add origin https://github.com/VOTRE_USERNAME/elinor-merchant.git
+git push -u origin main
+
+
+Si GitHub demande un token au lieu d'un mot de passe:
+
+1. Allez sur: https://github.com/settings/tokens
+2. Cliquez "Generate new token (classic)"
+3. Cochez "repo"
+4. Générez et copiez le token
+5. Utilisez ce token comme "mot de passe"
+
+
+═══════════════════════════════════════════════════════════════════════
+VÉRIFICATION FINALE
+═══════════════════════════════════════════════════════════════════════
+
+✅ Code sur GitHub: https://github.com/VOTRE_USERNAME/elinor-merchant
+✅ Site en ligne: https://elinor-merchant.onrender.com
+✅ Admin: https://elinor-merchant.onrender.com/admin
+✅ Flux XML: https://elinor-merchant.onrender.com/feed/google-merchant.xml
+
+
+Si tout fonctionne → FÉLICITATIONS! 🎉
+
+═══════════════════════════════════════════════════════════════════════
+
