@@ -52,6 +52,11 @@ app.get('/admin', (req, res) => {
   res.render('admin', { products });
 });
 
+// Page politique de retour
+app.get('/politique-retour', (req, res) => {
+  res.render('politique-retour');
+});
+
 // API: Obtenir tous les produits
 app.get('/api/products', (req, res) => {
   const products = loadProducts();
