@@ -50,6 +50,8 @@ Le serveur démarre sur `http://localhost:3000`
 elinor/
 ├── server.js           # Serveur Express principal
 ├── package.json        # Dépendances Node.js
+├── Procfile            # Configuration déploiement
+├── app.json            # Configuration Heroku/Render
 ├── views/
 │   ├── index.ejs      # Page d'accueil (boutique)
 │   └── admin.ejs      # Page d'administration
@@ -60,7 +62,7 @@ elinor/
 
 ## 🌍 Hébergement Gratuit
 
-### Option 1: Render (Recommandé - 750h/mois gratuit)
+### Option 1: Render (⭐ Recommandé - 750h/mois gratuit)
 
 1. Créez un compte sur [render.com](https://render.com)
 2. Connectez votre repo GitHub
@@ -70,26 +72,29 @@ elinor/
    - **Start Command**: `npm start`
 5. Votre site sera en ligne automatiquement
 
-### Option 2: Railway (Gratuit avec limite)
+**Lien de déploiement rapide:**
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=)
+
+### Option 2: Railway (Gratuit avec crédit)
 
 1. Créez un compte sur [railway.app](https://railway.app)
 2. Connectez GitHub
 3. Créez un projet et configurez le déploiement
 4. Railway détecte automatiquement Node.js
 
-### Option 3: Vercel (Compatible Node.js)
+### Option 3: Vercel (Gratuit)
 
 1. Allez sur [vercel.com](https://vercel.com)
 2. Importez votre repo
-3. Configurez les variables d'environnement si nécessaire
+3. Vercel détecte Node.js et configure automatiquement
 4. Déployer
 
-### Option 4: Railway.app (Plus simple)
+### Option 4: Netlify (Gratuit)
 
-Pour Railway, c'est aussi simple que:
-- Connecter GitHub
-- Sélectionner le repo
-- Cliquer "Deploy"
+1. Allez sur [netlify.com](https://netlify.com)
+2. Connectez GitHub
+3. Créez un site depuis le repo
+4. Configurez le build et déployer
 
 ## 📊 Champs Produits Supportés
 
@@ -112,7 +117,7 @@ Chaque produit peut contenir:
 2. Allez dans **Produits > Flux**
 3. Créez un nouveau flux
 4. Sélectionnez "Récupérer à partir d'une URL"
-5. Entrez: `https://votre-domaine.com/feed/google-merchant.xml`
+5. Entrez: `https://votre-domaine.render.app/feed/google-merchant.xml` (ou votre URL d'hébergement)
 6. Cliquez "Fetch now"
 
 ## 📝 API REST
@@ -150,8 +155,18 @@ Met à jour un produit
 
 ### Changer les couleurs
 Éditer les variables CSS dans `views/index.ejs` et `views/admin.ejs`:
-- `#667eea`: Couleur primaire
-- `#764ba2`: Couleur secondaire
+- `#667eea`: Couleur primaire (violet bleu)
+- `#764ba2`: Couleur secondaire (violet foncé)
+
+## 📋 Préparation pour Google Merchant
+
+### Checklist avant le lancement:
+- [ ] Ajouter au moins 10 produits avec images HTTPS
+- [ ] Vérifier que tous les champs requis sont remplis
+- [ ] Tester le flux XML: `/feed/google-merchant.xml`
+- [ ] Configurer le domaine personnalisé
+- [ ] Ajouter le flux dans Google Merchant Center
+- [ ] Attendre la validation (24-72h)
 
 ## 🐛 Troubleshooting
 
@@ -166,6 +181,18 @@ Vérifiez que le dossier `data/` existe et est accessible en écriture
 **Flux XML vide?**
 Assurez-vous que des produits ont été ajoutés via l'admin
 
+**Images ne s'affichent pas?**
+Les images doivent être en HTTPS (pas HTTP)
+
+## 🚀 Étapes suivantes
+
+1. **Installer Node.js** (si pas encore fait): https://nodejs.org
+2. **Installer dépendances**: `npm install`
+3. **Tester localement**: `npm start`
+4. **Créer un repo GitHub**
+5. **Déployer sur Render/Railway**
+6. **Ajouter le flux à Google Merchant Center**
+
 ## 📄 Licence
 
 MIT
@@ -173,4 +200,4 @@ MIT
 ---
 
 **Créé pour tester Google Merchant Center** ✨
-
+**Prêt pour le déploiement sur cloud gratuit** 🌍
