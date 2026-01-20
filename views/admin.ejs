@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Elinor Shop</title>
+    <title>Administration - Elinor Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,330 +13,593 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
             min-height: 100vh;
-            padding: 20px;
+            color: #2d3748;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        header {
+        /* Navigation */
+        nav {
             background: white;
-            padding: 20px 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 72px;
         }
 
-        header h1 {
-            color: #667eea;
-        }
-
-        .back-link {
-            padding: 8px 16px;
-            background: #667eea;
-            color: white;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 24px;
+            font-weight: 800;
+            color: #6366f1;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background 0.3s;
         }
 
-        .back-link:hover {
-            background: #764ba2;
-        }
-
-        .admin-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .form-section, .products-section {
-            background: white;
-            padding: 30px;
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
         }
 
-        @media (max-width: 1000px) {
-            .admin-container {
+        .nav-links {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            padding: 10px 18px;
+            color: #4a5568;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .nav-links a:hover {
+            background: #f7fafc;
+            color: #6366f1;
+        }
+
+        .nav-links a.btn-primary {
+            background: #6366f1;
+            color: white;
+        }
+
+        .nav-links a.btn-primary:hover {
+            background: #4f46e5;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-bottom: 32px;
+        }
+
+        .page-header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: #718096;
+            font-size: 16px;
+        }
+
+        /* Admin Grid */
+        .admin-grid {
+            display: grid;
+            grid-template-columns: 450px 1fr;
+            gap: 28px;
+            align-items: start;
+        }
+
+        @media (max-width: 1100px) {
+            .admin-grid {
                 grid-template-columns: 1fr;
             }
         }
 
-        h2 {
-            color: #667eea;
-            margin-bottom: 20px;
-            font-size: 22px;
+        /* Card Styling */
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
         }
 
+        .card-header {
+            padding: 24px;
+            border-bottom: 1px solid #e2e8f0;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+        }
+
+        .card-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .card-header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .card-body {
+            padding: 24px;
+        }
+
+        /* Form Styling */
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         label {
             display: block;
-            margin-bottom: 5px;
-            color: #333;
-            font-weight: 500;
+            margin-bottom: 8px;
+            color: #2d3748;
+            font-weight: 600;
             font-size: 14px;
+        }
+
+        label .required {
+            color: #ef4444;
         }
 
         input, textarea, select {
             width: 100%;
-            padding: 10px 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            padding: 12px 14px;
+            border: 1px solid #cbd5e0;
+            border-radius: 10px;
             font-size: 14px;
             font-family: inherit;
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 80px;
+            transition: all 0.2s;
+            background: white;
         }
 
         input:focus, textarea:focus, select:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
         }
 
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 16px;
         }
 
+        .help-text {
+            font-size: 12px;
+            color: #a0aec0;
+            margin-top: 6px;
+        }
+
+        /* Button Styling */
         .btn-group {
             display: flex;
-            gap: 10px;
-            margin-top: 20px;
+            gap: 12px;
+            margin-top: 24px;
         }
 
         button {
             flex: 1;
-            padding: 12px;
+            padding: 14px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
-        .btn-submit {
-            background: #667eea;
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
             color: white;
         }
 
-        .btn-submit:hover {
-            background: #764ba2;
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 16px rgba(99, 102, 241, 0.3);
         }
 
-        .btn-reset {
-            background: #f0f0f0;
-            color: #333;
+        .btn-secondary {
+            background: #f7fafc;
+            color: #4a5568;
+            border: 1px solid #e2e8f0;
         }
 
-        .btn-reset:hover {
-            background: #e0e0e0;
+        .btn-secondary:hover {
+            background: #edf2f7;
+        }
+
+        /* Products List */
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .products-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a202c;
+        }
+
+        .product-count {
+            background: #6366f1;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
         }
 
         .products-list {
-            max-height: 600px;
+            max-height: 700px;
             overflow-y: auto;
+            padding: 16px 24px;
         }
 
         .product-item {
-            background: #f9f9f9;
-            padding: 12px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border-left: 4px solid #667eea;
+            background: linear-gradient(135deg, #f7fafc 0%, #ffffff 100%);
+            padding: 20px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
             display: flex;
             justify-content: space-between;
             align-items: start;
-            gap: 10px;
+            gap: 16px;
+            transition: all 0.2s;
+        }
+
+        .product-item:hover {
+            border-color: #6366f1;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
         }
 
         .product-item-info {
             flex: 1;
         }
 
-        .product-item-name {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 3px;
+        .product-item-header {
+            display: flex;
+            align-items: start;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 8px;
         }
 
-        .product-item-price {
-            color: #667eea;
-            font-weight: 700;
+        .product-item-name {
+            font-weight: 600;
+            color: #1a202c;
             font-size: 16px;
         }
 
-        .product-item-meta {
-            font-size: 12px;
-            color: #999;
-            margin-top: 3px;
-        }
-
-        .btn-delete {
-            background: #ff4757;
-            color: white;
-            padding: 6px 12px;
-            font-size: 12px;
+        .product-item-price {
+            color: #6366f1;
+            font-weight: 700;
+            font-size: 18px;
             white-space: nowrap;
         }
 
-        .btn-delete:hover {
-            background: #ff3838;
+        .product-item-meta {
+            font-size: 13px;
+            color: #718096;
+            margin-top: 4px;
         }
 
+        .product-item-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: #e0f2fe;
+            color: #0369a1;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .btn-delete {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            padding: 10px 18px;
+            font-size: 13px;
+            white-space: nowrap;
+            flex: 0;
+        }
+
+        .btn-delete:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 12px rgba(239, 68, 68, 0.3);
+        }
+
+        /* Messages */
         .message {
-            padding: 12px;
-            border-radius: 5px;
-            margin-bottom: 15px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
             display: none;
+            font-weight: 500;
+            align-items: center;
+            gap: 12px;
         }
 
         .message.show {
-            display: block;
+            display: flex;
         }
 
         .message.success {
-            background: #e8f5e9;
-            color: #2e7d32;
-            border-left: 4px solid #2e7d32;
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #6ee7b7;
         }
 
         .message.error {
-            background: #ffebee;
-            color: #c62828;
-            border-left: 4px solid #c62828;
+            background: #fee2e2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
         }
 
         .empty-products {
             text-align: center;
-            padding: 30px 20px;
-            color: #999;
+            padding: 60px 20px;
+            color: #a0aec0;
         }
 
-        .info-text {
+        .empty-products-icon {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+
+        .empty-products h3 {
+            font-size: 18px;
+            color: #4a5568;
+            margin-bottom: 8px;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-card-label {
             font-size: 13px;
-            color: #666;
-            margin-top: 10px;
-            line-height: 1.5;
+            color: #718096;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .stat-card-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #6366f1;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .product-item {
+                flex-direction: column;
+            }
+
+            .btn-delete {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <div class="logo-icon">E</div>
+                <span>Elinor Shop</span>
+            </a>
+            <div class="nav-links">
+                <a href="/">← Retour à la boutique</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
-        <header>
-            <h1>⚙️ Admin - Elinor Shop</h1>
-            <a href="/" class="back-link">← Retour à la boutique</a>
-        </header>
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>⚙️ Administration</h1>
+            <p>Gérez vos produits et votre catalogue Google Merchant Center</p>
+        </div>
 
-        <div class="admin-container">
-            <!-- Formulaire d'ajout de produit -->
-            <div class="form-section">
-                <h2>Ajouter un produit</h2>
-                <div class="message" id="message"></div>
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-card-label">📦 Total Produits</div>
+                <div class="stat-card-value" id="totalProducts"><%= products.length %></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-label">✅ En Stock</div>
+                <div class="stat-card-value" id="inStockProducts"><%= products.filter(p => p.availability === 'in_stock').length %></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card-label">🔗 Flux Google</div>
+                <div class="stat-card-value">Actif</div>
+            </div>
+        </div>
 
-                <form id="productForm">
-                    <div class="form-group">
-                        <label for="title">Nom du produit *</label>
-                        <input type="text" id="title" name="title" required>
-                    </div>
+        <!-- Admin Grid -->
+        <div class="admin-grid">
+            <!-- Add Product Form -->
+            <div class="card">
+                <div class="card-header">
+                    <h2>➕ Nouveau Produit</h2>
+                    <p>Ajoutez un produit à votre catalogue</p>
+                </div>
+                <div class="card-body">
+                    <div class="message" id="message"></div>
 
-                    <div class="form-group">
-                        <label for="description">Description *</label>
-                        <textarea id="description" name="description" required></textarea>
-                    </div>
-
-                    <div class="form-row">
+                    <form id="productForm">
                         <div class="form-group">
-                            <label for="price">Prix *</label>
-                            <input type="number" id="price" name="price" step="0.01" required>
+                            <label>Nom du produit <span class="required">*</span></label>
+                            <input type="text" id="title" name="title" required placeholder="Ex: Laptop Premium">
                         </div>
+
                         <div class="form-group">
-                            <label for="currency">Devise *</label>
-                            <select id="currency" name="currency">
-                                <option value="EUR">EUR (€)</option>
-                                <option value="USD">USD ($)</option>
-                                <option value="GBP">GBP (£)</option>
+                            <label>Description <span class="required">*</span></label>
+                            <textarea id="description" name="description" required placeholder="Décrivez votre produit..."></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Prix <span class="required">*</span></label>
+                                <input type="number" id="price" name="price" step="0.01" required placeholder="99.99">
+                            </div>
+                            <div class="form-group">
+                                <label>Devise <span class="required">*</span></label>
+                                <select id="currency" name="currency">
+                                    <option value="EUR">EUR (€)</option>
+                                    <option value="USD">USD ($)</option>
+                                    <option value="GBP">GBP (£)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>URL de l'image</label>
+                            <input type="url" id="image_url" name="image_url" placeholder="https://exemple.com/image.jpg">
+                            <p class="help-text">Utilisez une URL HTTPS pour une image publique</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Catégorie</label>
+                            <input type="text" id="category" name="category" placeholder="Électronique > Ordinateurs">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Marque</label>
+                            <input type="text" id="brand" name="brand" placeholder="Ex: Apple, Samsung...">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>GTIN</label>
+                                <input type="text" id="gtin" name="gtin" placeholder="5901234123457">
+                                <p class="help-text">Code-barres international</p>
+                            </div>
+                            <div class="form-group">
+                                <label>MPN</label>
+                                <input type="text" id="mpn" name="mpn" placeholder="TB-LAPTOP-2024">
+                                <p class="help-text">Numéro de pièce fabricant</p>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Disponibilité</label>
+                            <select id="availability" name="availability">
+                                <option value="in_stock">En stock</option>
+                                <option value="out_of_stock">Rupture de stock</option>
+                                <option value="preorder">Précommande</option>
                             </select>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="image_url">URL de l'image</label>
-                        <input type="url" id="image_url" name="image_url" placeholder="https://...">
-                        <p class="info-text">Utilisez une image HTTPS valide</p>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="category">Catégorie</label>
-                        <input type="text" id="category" name="category" placeholder="ex: Électronique > Ordinateurs">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="brand">Marque</label>
-                        <input type="text" id="brand" name="brand">
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="gtin">GTIN (Code-barres)</label>
-                            <input type="text" id="gtin" name="gtin" placeholder="ex: 5901234123457">
+                        <div class="btn-group">
+                            <button type="submit" class="btn-primary">
+                                ✨ Ajouter
+                            </button>
+                            <button type="reset" class="btn-secondary">
+                                🔄 Réinitialiser
+                            </button>
                         </div>
-                        <div class="form-group">
-                            <label for="mpn">MPN (Référence fabrique)</label>
-                            <input type="text" id="mpn" name="mpn" placeholder="ex: TB-LAPTOP-2024">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="availability">Disponibilité</label>
-                        <select id="availability" name="availability">
-                            <option value="in_stock">En stock</option>
-                            <option value="out_of_stock">Rupture de stock</option>
-                            <option value="preorder">Précommande</option>
-                        </select>
-                    </div>
-
-                    <div class="btn-group">
-                        <button type="submit" class="btn-submit">Ajouter le produit</button>
-                        <button type="reset" class="btn-reset">Réinitialiser</button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
 
-            <!-- Liste des produits -->
-            <div class="products-section">
-                <h2>Produits (<span id="productCount"><%= products.length %></span>)</h2>
+            <!-- Products List -->
+            <div class="card">
+                <div class="products-header">
+                    <h2>📋 Catalogue</h2>
+                    <div class="product-count" id="productCount"><%= products.length %> produits</div>
+                </div>
                 <div class="products-list" id="productsList">
                     <% if (products && products.length > 0) { %>
                         <% products.forEach(product => { %>
                             <div class="product-item" data-id="<%= product.id %>">
                                 <div class="product-item-info">
-                                    <div class="product-item-name"><%= product.title %></div>
-                                    <div class="product-item-price"><%= product.price %> <%= product.currency %></div>
-                                    <div class="product-item-meta"><%= product.category %></div>
+                                    <div class="product-item-header">
+                                        <div class="product-item-name"><%= product.title %></div>
+                                        <div class="product-item-price"><%= product.price %> <%= product.currency %></div>
+                                    </div>
+                                    <div class="product-item-meta">
+                                        <% if (product.brand) { %>🏷️ <%= product.brand %> • <% } %>
+                                        <% if (product.category) { %>📂 <%= product.category %><% } %>
+                                    </div>
+                                    <% if (product.availability === 'in_stock') { %>
+                                        <span class="product-item-badge">✓ En stock</span>
+                                    <% } %>
                                 </div>
-                                <button class="btn-delete" onclick="deleteProduct('<%= product.id %>')">Supprimer</button>
+                                <button class="btn-delete" onclick="deleteProduct('<%= product.id %>')">🗑️ Supprimer</button>
                             </div>
                         <% }); %>
                     <% } else { %>
-                        <div class="empty-products">Aucun produit. Créez-en un avec le formulaire.</div>
+                        <div class="empty-products">
+                            <div class="empty-products-icon">📦</div>
+                            <h3>Aucun produit</h3>
+                            <p>Créez votre premier produit avec le formulaire</p>
+                        </div>
                     <% } %>
                 </div>
             </div>
@@ -345,7 +609,7 @@
     <script>
         const BASE_URL = '/api/products';
 
-        // Ajouter un produit
+        // Add product
         document.getElementById('productForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             
@@ -360,72 +624,100 @@
                 });
 
                 if (response.ok) {
-                    showMessage('Produit ajouté avec succès!', 'success');
+                    showMessage('✅ Produit ajouté avec succès!', 'success');
                     e.target.reset();
                     loadProducts();
+                    updateStats();
                 } else {
-                    showMessage('Erreur lors de l\'ajout du produit', 'error');
+                    showMessage('❌ Erreur lors de l\'ajout du produit', 'error');
                 }
             } catch (error) {
-                showMessage('Erreur: ' + error.message, 'error');
+                showMessage('❌ Erreur: ' + error.message, 'error');
             }
         });
 
-        // Charger les produits
+        // Load products
         async function loadProducts() {
             try {
                 const response = await fetch(BASE_URL);
                 const products = await response.json();
                 
                 const productsList = document.getElementById('productsList');
-                document.getElementById('productCount').textContent = products.length;
+                document.getElementById('productCount').textContent = products.length + ' produits';
 
                 if (products.length === 0) {
-                    productsList.innerHTML = '<div class="empty-products">Aucun produit. Créez-en un avec le formulaire.</div>';
+                    productsList.innerHTML = `
+                        <div class="empty-products">
+                            <div class="empty-products-icon">📦</div>
+                            <h3>Aucun produit</h3>
+                            <p>Créez votre premier produit avec le formulaire</p>
+                        </div>
+                    `;
                     return;
                 }
 
                 productsList.innerHTML = products.map(product => `
                     <div class="product-item" data-id="${product.id}">
                         <div class="product-item-info">
-                            <div class="product-item-name">${product.title}</div>
-                            <div class="product-item-price">${product.price} ${product.currency}</div>
-                            <div class="product-item-meta">${product.category}</div>
+                            <div class="product-item-header">
+                                <div class="product-item-name">${product.title}</div>
+                                <div class="product-item-price">${product.price} ${product.currency}</div>
+                            </div>
+                            <div class="product-item-meta">
+                                ${product.brand ? '🏷️ ' + product.brand + ' • ' : ''}
+                                ${product.category ? '📂 ' + product.category : ''}
+                            </div>
+                            ${product.availability === 'in_stock' ? '<span class="product-item-badge">✓ En stock</span>' : ''}
                         </div>
-                        <button class="btn-delete" onclick="deleteProduct('${product.id}')">Supprimer</button>
+                        <button class="btn-delete" onclick="deleteProduct('${product.id}')">🗑️ Supprimer</button>
                     </div>
                 `).join('');
             } catch (error) {
-                showMessage('Erreur lors du chargement des produits', 'error');
+                showMessage('❌ Erreur lors du chargement des produits', 'error');
             }
         }
 
-        // Supprimer un produit
+        // Delete product
         async function deleteProduct(id) {
             if (!confirm('Êtes-vous sûr de vouloir supprimer ce produit?')) return;
 
             try {
                 const response = await fetch(`${BASE_URL}/${id}`, { method: 'DELETE' });
                 if (response.ok) {
-                    showMessage('Produit supprimé avec succès!', 'success');
+                    showMessage('✅ Produit supprimé avec succès!', 'success');
                     loadProducts();
+                    updateStats();
                 } else {
-                    showMessage('Erreur lors de la suppression', 'error');
+                    showMessage('❌ Erreur lors de la suppression', 'error');
                 }
             } catch (error) {
-                showMessage('Erreur: ' + error.message, 'error');
+                showMessage('❌ Erreur: ' + error.message, 'error');
             }
         }
 
-        // Afficher les messages
+        // Update statistics
+        async function updateStats() {
+            try {
+                const response = await fetch(BASE_URL);
+                const products = await response.json();
+                
+                document.getElementById('totalProducts').textContent = products.length;
+                document.getElementById('inStockProducts').textContent = 
+                    products.filter(p => p.availability === 'in_stock').length;
+            } catch (error) {
+                console.error('Erreur lors de la mise à jour des stats:', error);
+            }
+        }
+
+        // Show message
         function showMessage(text, type) {
             const msg = document.getElementById('message');
             msg.textContent = text;
             msg.className = `message show ${type}`;
-            setTimeout(() => msg.classList.remove('show'), 4000);
+            setTimeout(() => msg.classList.remove('show'), 5000);
         }
 
-        // Charger les produits au démarrage
+        // Load products on start
         loadProducts();
     </script>
 </body>
